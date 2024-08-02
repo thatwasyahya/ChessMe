@@ -6,27 +6,23 @@ function Sidebar({ setGameMode, currentGameMode }) {
   const [inputMessage, setInputMessage] = useState('');
 
   const handleSendMessage = async () => {
-    // Add user's message to chat
     const userMessage = { role: 'user', content: inputMessage };
     setChatMessages([...chatMessages, userMessage]);
 
-    // Send message to backend
     try {
-      const response = await fetch('/api/chat', {
+      const response = await fetch('https://chess-j01d1q00v-thatwasyahyas-projects.vercel.app/api/chat', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ message: inputMessage }),
       });
       const data = await response.json();
       
-      // Add bot's response to chat
       const botMessage = { role: 'bot', content: data.text };
       setChatMessages([...chatMessages, userMessage, botMessage]);
     } catch (error) {
       console.error('Error sending message:', error);
     }
 
-    // Clear input field
     setInputMessage('');
   };
 
@@ -44,14 +40,14 @@ function Sidebar({ setGameMode, currentGameMode }) {
         </label>
       </div>
       <div className="chatbox">
-        <div className="chat-messages">
+        <div className="chatbox-messages">
           {chatMessages.map((msg, index) => (
             <div key={index} className={`message ${msg.role}`}>
               {msg.content}
             </div>
           ))}
         </div>
-        <div className="chat-input">
+        <div className="chatbox-input">
           <input
             type="text"
             value={inputMessage}
