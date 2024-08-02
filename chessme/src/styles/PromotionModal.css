@@ -1,0 +1,68 @@
+/* General modal styling */
+.promotion-modal {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background: rgba(0, 0, 0, 0.8);
+    border-radius: 10px;
+    padding: 20px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+    z-index: 11;
+    width: 300px;
+    text-align: center;
+  }
+  
+  /* Modal header styling */
+  .promotion-modal h2 {
+    color: #fff;
+    margin-bottom: 20px;
+  }
+  
+  /* Container for promotion buttons */
+  .promotion-buttons {
+    display: flex;
+    flex-direction: column; /* Stack buttons vertically */
+    gap: 10px; /* Space between buttons */
+    margin-top: 20px;
+  }
+  
+  /* Individual button styling */
+  .promotion-button {
+    background-color: #4CAF50;
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    padding: 10px;
+    font-size: 18px; /* Adjust font size for emojis */
+    cursor: pointer;
+    transition: background-color 0.3s, transform 0.2s;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  
+  .promotion-button:hover {
+    background-color: #45a049;
+  }
+  
+  .promotion-button:active {
+    transform: scale(0.98);
+  }
+  
+  /* Close button styling */
+  .close-button {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    background: transparent;
+    border: none;
+    font-size: 24px;
+    color: #fff;
+    cursor: pointer;
+    transition: color 0.3s;
+  }
+  
+  .close-button:hover {
+    color: #f44336;
+  }

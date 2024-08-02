@@ -3,12 +3,15 @@ import { useState, useEffect } from 'react';
 import { Chessboard } from 'react-chessboard';
 import { Chess } from 'chess.js';
 import Sidebar from './Sidebar';
+import PromotionModal from './PromotionModal';
 
 function App() {
   const [game, setGame] = useState(new Chess());
   const [winner, setWinner] = useState(null);
   const [gameOver, setGameOver] = useState(false);
   const [gameMode, setGameMode] = useState('bot');
+  const [promotion, setPromotion] = useState(null);
+  const [promotionSquare, setPromotionSquare] = useState(null);
 
   function safeGameMutate(modify) {
     setGame((g) => {
@@ -41,6 +44,13 @@ function App() {
   function onDrop(source, target) {
     if (gameOver) return false;
 
+    const piece = game.get(source);
+    if (piece.type === 'p' && (target[1] === '8' || target[1] === '1')) {
+      setPromotionSquare(target);
+      setPromotion({ from: source, to: target });
+      return false;
+    }
+
     let move = null;
     safeGameMutate((game) => {
       move = game.move({
@@ -61,10 +71,26 @@ function App() {
     return true;
   }
 
+  function handlePromotion(promotionType) {
+    const { from, to } = promotion;
+    safeGameMutate((game) => {
+      game.move({
+        from: from,
+        to: to,
+        promotion: promotionType,
+      });
+    });
+
+    setPromotion(null);
+    setPromotionSquare(null);
+  }
+
   function restartGame() {
     setGame(new Chess());
     setGameOver(false);
     setWinner(null);
+    setPromotion(null);
+    setPromotionSquare(null);
   }
 
   useEffect(() => {
@@ -96,6 +122,12 @@ function App() {
               <p>Winner: {winner}</p>
               <p>Press Enter to restart</p>
             </div>
+          )}
+          {promotionSquare && (
+            <PromotionModal
+              color={game.turn()}
+              onSelect={handlePromotion}
+            />
           )}
         </div>
       </div>
