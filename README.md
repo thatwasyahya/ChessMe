@@ -1,11 +1,12 @@
-# Chat and Game Mode Sidebar
+# ChessMe
+# Chess-Chat-Game Mode Sidebar
 
 ## Overview
 
-This project is a React-based application featuring a sidebar that allows users to switch between different game modes and chat with a bot. The bot can handle various types of queries, including playing a text-based chess game, answering general questions, and responding to various conversational prompts.
+This project is a React-based application chess game featuring a sidebar that allows users to switch between different game modes and chat with a bot. The bot can handle various types of queries, including playing a text-based chess game, answering general questions, and responding to various conversational prompts.
 
 ## Features
-
+- **Chess-Game**: Fully implemented Chess game with all rules and special rules included.
 - **Game Mode Switch**: Toggle between player mode and bot mode using an intuitive switch interface.
 - **Chat Interface**: A chatbox where users can interact with a bot.
 - **Bot Responses**: The bot can respond to a wide range of inputs, including:
