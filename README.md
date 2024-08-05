@@ -88,4 +88,4 @@ Contributions are welcome! Here’s how you can help:
 
 ## Contact
 
-For any questions or suggestions, please open an issue or contact the repository owner at [yahyacoubi64@gmail.com.com](mailto:yahyacoubi64@gmail.com).
+For any questions or suggestions, please open an issue or contact the repository owner at [yahyacoubi64@gmail.com](mailto:yahyacoubi64@gmail.com).
