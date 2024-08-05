@@ -1,46 +1,13 @@
 const express = require('express');
-const axios = require('axios');
-const bodyParser = require('body-parser');
 const app = express();
-const port = process.env.PORT || 5000;
 
-app.use(bodyParser.json());
-
-app.post('/api/chat', async (req, res) => {
-  try {
-    const response = await axios.post(
-      'https://chatgpt-42.p.rapidapi.com/conversationgpt4-2',
-      {
-        messages: [
-          {
-            role: 'user',
-            content: req.body.message,
-          },
-        ],
-        system_prompt: '',
-        temperature: 0.9,
-        top_k: 5,
-        top_p: 0.9,
-        max_tokens: 256,
-        web_access: false,
-      },
-      {
-        headers: {
-          'x-rapidapi-key': process.env.RAPIDAPI_KEY, // Ensure to set this in your Vercel environment variables
-          'x-rapidapi-host': 'chatgpt-42.p.rapidapi.com',
-          'Content-Type': 'application/json',
-        },
-      }
-    );
-
-    const botMessage = response.data.messages[0]?.content || 'Sorry, I could not process your request.';
-    res.json({ text: botMessage });
-  } catch (error) {
-    console.error('Error:', error);
-    res.status(500).json({ text: 'Sorry, I could not process your request.' });
-  }
+// Middleware pour définir les en-têtes CSP
+app.use((req, res, next) => {
+  res.setHeader("Content-Security-Policy", "default-src 'self'; connect-src 'self' wss://example-websocket-server.com wss://glorious-xylophone-gv56957599vh9xgq-3000.app.github.dev:3000; script-src 'self' 'unsafe-inline' 'unsafe-eval' https://data1.seconetic.com; style-src 'self' 'unsafe-inline'; img-src 'self' data:; frame-src 'none'; font-src 'self';");
+  next();
 });
 
-app.listen(port, () => {
-  console.log(`Server running at http://localhost:${port}`);
+// Autres configurations et routes
+app.listen(3000, () => {
+  console.log('Server is running on port 3000');
 });
