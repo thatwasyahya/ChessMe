@@ -1,5 +1,5 @@
 # ChessMe
-# Chess-Chat-Game Mode Sidebar
+## Chess-Chat-Game Mode Sidebar
 
 ## Overview
 
